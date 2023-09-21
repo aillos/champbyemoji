@@ -395,8 +395,10 @@ function App() {
         <div className="emojis">
             {randomNumber !== null && result !== null && (
                 <form onSubmit={handleFormSubmit}>
+                    <div className="test">
                     <div className="emojiString">
                         <p>{emojis} </p>
+                    </div>
                     </div>
                     <input
                         className="guess"
