@@ -64,4 +64,4 @@ jobs:
           app-name: 'GuessChampEmoji'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2C0518E34E134C0386564F6BC574DF32 }}
-          package: .
+          package: release.zip
