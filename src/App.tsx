@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import './App.css'
 import talon from './assets/talon.png';
+import Confetti from 'react-confetti';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,6 +11,7 @@ function App() {
     const [userGuess, setUserGuess] = useState<string>('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [correctChampion, setCorrectChampion] = useState<string>(''); // Added state for correct champion
+    const [confettiActive, setConfettiActive] = useState(false);
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -382,6 +384,12 @@ function App() {
             setCount(0);
             generateRandomNumber();
             setUserGuess('');
+
+            // Activate confetti on correct guess
+            setConfettiActive(true);
+            setTimeout(() => {
+                setConfettiActive(false);
+            }, 6000); // Duration in milliseconds for confetti animation
         }
         setIsCorrect(isGuessCorrect);
     };
@@ -416,6 +424,13 @@ function App() {
                         </p>
                     )}
                 </form>
+            )}
+            {confettiActive && (
+                <Confetti
+                    width={window.innerWidth}
+                    height={window.innerHeight}
+                    recycle={false}
+                />
             )}
         </div>
     </>
