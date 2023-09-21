@@ -37,6 +37,7 @@
   padding: 2em;
 }
 .talon{
+  margin-top: -100px;
   width:70%;
   margin-bottom: -30px;
 }
@@ -78,6 +79,7 @@
 }
 
 .guess{
+  border-radius: 5px;
   font-size: 22px;
   width:250px;
   height:45px;

@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.css'
 import talon from './assets/talon.png';
 import Confetti from 'react-confetti';
+import Popup from './Popup';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [correctChampion, setCorrectChampion] = useState<string>(''); // Added state for correct champion
     const [confettiActive, setConfettiActive] = useState(false);
+    const [isPopupOpen, setPopupOpen] = useState(false);
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -277,7 +279,7 @@ function App() {
         88: 'Nidalee',
         89: 'Nilah',
         90: 'Nocturne',
-        91: 'Nunu & Willump',
+        91: 'Nunu',
         92: 'Olaf',
         93: 'Orianna',
         94: 'Ornn',
@@ -388,6 +390,14 @@ function App() {
             // Activate confetti on correct guess
             setConfettiActive(true);
             setTimeout(() => {
+                setPopupOpen(true);
+            }, 250); // Duration in milliseconds for confetti animation
+
+            setTimeout(() => {
+                setPopupOpen(false);
+            }, 3000); // Duration in milliseconds for confetti animation
+
+            setTimeout(() => {
                 setConfettiActive(false);
             }, 6000); // Duration in milliseconds for confetti animation
         }
@@ -419,7 +429,7 @@ function App() {
                     <p>Number of guesses: {count}</p>
                     {isCorrect !== null && (
                         <p>
-                            {isCorrect ? `Correct guess! It was ${correctChampion}` : 'Incorrect guess!'}
+                            {isCorrect ? `` : 'Incorrect guess!'}
 
                         </p>
                     )}
@@ -428,10 +438,15 @@ function App() {
             {confettiActive && (
                 <Confetti
                     width={window.innerWidth}
-                    height={window.innerHeight}
+                    height={window.outerHeight}
                     recycle={false}
                 />
             )}
+            <Popup
+                isOpen={isPopupOpen}
+                onClose={() => setPopupOpen(false)}
+                message={`Correct guess! It was ${correctChampion}`}
+            />
         </div>
     </>
   )
