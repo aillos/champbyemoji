@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 const customStyles = {
     content: {
-        width: '20%',
+        width: '350px',
         height: '10%',
         margin: 'auto',
         background: '#131313',
