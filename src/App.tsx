@@ -12,11 +12,10 @@ function App() {
     const [correctChampion, setCorrectChampion] = useState<string>(''); // Added state for correct champion
 
     const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-        handleGuess(); // Call the handleGuess function when the form is submitted
+        e.preventDefault();
+        handleGuess();
     };
 
-    // Define a map that contains the mappings between numbers and strings
     const numberToStringMap: Record<number, string> = {
         1: '👹🦇⚔️🩸',
         2: '👩🏻🦊🔥❤️',
@@ -185,7 +184,6 @@ function App() {
         165: '👩‍🦰🌱🌿🌹',
     };
 
-    // Define a map that contains the mappings between numbers and corresponding names
     const numberToNameMap: Record<number, string> = {
         1: 'Aatrox',
         2: 'Ahri',
@@ -356,7 +354,6 @@ function App() {
 
 
     useEffect(() => {
-        // Generate a random number between 1 and the total number of champions
         generateRandomNumber();
     }, []);
 
@@ -364,23 +361,19 @@ function App() {
         const randomNum = Math.floor(Math.random() * Object.keys(numberToNameMap).length) + 1;
         setRandomNumber(randomNum);
 
-        // Retrieve the champion name for the generated number from the map
+
         const resultChampion = numberToNameMap[randomNum];
         const resultEmojis = numberToStringMap[randomNum];
         setResult(resultChampion);
         setEmojis(resultEmojis);
     };
     const handleGuess = () => {
-
-        // Get the expected champion name for the current random number
         const expectedChampion = numberToNameMap[randomNumber || 1];
 
-        // Convert both the user's guess and the expected champion name to lowercase
         const userGuessNormalized = userGuess.replace(/['.\s]/g, '').toLowerCase();
         const expectedChampionNormalized = expectedChampion.replace(/['.\s]/g, '').toLowerCase();
 
 
-        // Check if the lowercase user's guess matches the lowercase expected champion name
         const isGuessCorrect = userGuessNormalized === expectedChampionNormalized;
         if (!isGuessCorrect) {
             setCount(count + 1);
@@ -396,13 +389,6 @@ function App() {
     return (
     <>
       <div>
-          {/* <a href="https://vitejs.dev" target="_blank">
-
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-          */}
           <img src={talon} className="talon" alt="Chibi Talon" />
       </div>
       <h1>Guess the champion</h1>
