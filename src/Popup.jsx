@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Modal from 'react-modal';
 
-// Media query for screens with a maximum width of 768px (adjust as needed)
 const mobileStyles = {
     content: {
         width: '300px',
@@ -23,12 +22,11 @@ const mobileStyles = {
     },
 };
 
-// Media query for screens with a minimum width of 769px (adjust as needed)
 const pcStyles = {
     content: {
 
         width: '300px',
-        height: '80px',
+        height: '100px',
         margin: 'auto',
         marginTop: '25%',
         background: '#131313',
@@ -47,25 +45,24 @@ const pcStyles = {
     },
 };
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+Modal.setAppElement('#root');
 
 function Popup({ isOpen, onClose, message }) {
     const [modalStyles, setModalStyles] = useState(pcStyles);
 
     useEffect(() => {
-        // Update styles based on screen width when the component mounts
+
         const updateModalStyles = () => {
-            const isMobile = window.innerWidth <= 768; // Adjust the breakpoint as needed
+            const isMobile = window.innerWidth <= 768;
             setModalStyles(isMobile ? mobileStyles : pcStyles);
         };
 
-        // Call the function to set the initial styles
+
         updateModalStyles();
 
-        // Attach a resize event listener to update styles when the window size changes
         window.addEventListener('resize', updateModalStyles);
 
-        // Cleanup: Remove the event listener when the component unmounts
+
         return () => {
             window.removeEventListener('resize', updateModalStyles);
         };
