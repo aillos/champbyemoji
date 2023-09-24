@@ -371,12 +371,12 @@ function App() {
         setResult(resultChampion);
         setEmojis(resultEmojis);
     };
+
     const handleGuess = () => {
         const expectedChampion = numberToNameMap[randomNumber || 1];
 
         const userGuessNormalized = userGuess.replace(/['.\s]/g, '').toLowerCase();
         const expectedChampionNormalized = expectedChampion.replace(/['.\s]/g, '').toLowerCase();
-
 
         const isGuessCorrect = userGuessNormalized === expectedChampionNormalized;
         if (!isGuessCorrect) {
@@ -426,13 +426,14 @@ function App() {
                         onChange={(e) => setUserGuess(e.target.value)}
                     />
                     <button type="submit">Submit Guess</button>
-                    <p>Number of guesses: {count}</p>
                     {isCorrect !== null && (
                         <p>
-                            {isCorrect ? `` : 'Incorrect guess!'}
+                            {isCorrect ? `` : userGuess + ' is incorrect!'}
 
                         </p>
                     )}
+                    <p>Number of guesses: {count}</p>
+
                 </form>
             )}
             {confettiActive && (
