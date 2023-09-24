@@ -404,47 +404,53 @@ function App() {
         setIsCorrect(isGuessCorrect);
     };
 
-
     return (
-        <div className="app">
-            <img src={talon} className="talon" alt="Chibi Talon" />
-            <h1>Guess the champion</h1>
-            <div className="content">
-                {randomNumber !== null && result !== null && (
-                    <form onSubmit={handleFormSubmit}>
-                        <div className="emojiString">
-                            <p>{emojis}</p>
-                        </div>
-                        <input
-                            className="guess"
-                            type="text"
-                            placeholder="Enter your guess"
-                            value={userGuess}
-                            onChange={(e) => setUserGuess(e.target.value)}
-                        />
-                        <button type="submit">Submit Guess</button>
-                        {isCorrect !== null && (
-                            <p className="result">
-                                {isCorrect ? `Correct! It was ${correctChampion}` : `${userGuess} is incorrect!`}
-                            </p>
-                        )}
-                        <p className="guess-count">Number of guesses: {count}</p>
-                    </form>
-                )}
-                {confettiActive && (
-                    <Confetti
-                        width={window.innerWidth}
-                        height={window.outerHeight}
-                        recycle={false}
+    <>
+      <div>
+          <img src={talon} className="talon" alt="Chibi Talon" />
+      </div>
+      <h1>Guess the champion</h1>
+        <div className="emojis">
+            {randomNumber !== null && result !== null && (
+                <form onSubmit={handleFormSubmit}>
+                    <div className="test">
+                    <div className="emojiString">
+                        <p>{emojis} </p>
+                    </div>
+                    </div>
+                    <input
+                        className="guess"
+                        type="text"
+                        placeholder="Enter your guess"
+                        value={userGuess}
+                        onChange={(e) => setUserGuess(e.target.value)}
                     />
-                )}
-                <Popup
-                    isOpen={isPopupOpen}
-                    onClose={() => setPopupOpen(false)}
-                    message={`Correct guess! It was ${correctChampion}`}
+                    <button type="submit">Submit Guess</button>
+                    {isCorrect !== null && (
+                        <p>
+                            {isCorrect ? `` : userGuess + ' is incorrect!'}
+
+                        </p>
+                    )}
+                    <p>Number of guesses: {count}</p>
+
+                </form>
+            )}
+            {confettiActive && (
+                <Confetti
+                    width={window.innerWidth}
+                    height={window.outerHeight}
+                    recycle={false}
                 />
-            </div>
+            )}
+            <Popup
+                isOpen={isPopupOpen}
+                onClose={() => setPopupOpen(false)}
+                message={`Correct guess! It was ${correctChampion}`}
+            />
         </div>
-    );
+    </>
+  )
 }
+
 export default App
